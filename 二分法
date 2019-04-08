@@ -1,0 +1,53 @@
+/
+//  main.cpp
+//  二分法
+//
+//  Created by 倪瑞阳 on 2019/3/28.
+//  Copyright © 2019年 倪瑞阳. All rights reserved.
+//
+
+#include <iostream>
+#include <stdio.h>
+#include <math.h>
+
+const double eps=0.5*1e-5;
+double m=1,n=2,i,sum;
+int k=0;
+double f(double x)
+{
+    return x*x*x+4*x*x-10;
+}
+
+int main()
+{
+    if(f(m)*f(n)<0)
+    {
+        do{
+             k++;
+            
+            i=(m+n)/2;
+            sum=f(i);
+            printf("[%lf  %lf]\n",m,n);
+            
+           if(f(m)*f(i)<0)
+            {
+                n=i;
+            }
+            else if(f(i)*f(n)<0)
+            {
+                m=i;
+            }
+            else if(f(i)==0&&fabs(i)<eps)
+            {
+                
+                break;
+            }
+        
+        }while(fabs(m-n)/2>eps);
+        
+    }
+   
+    printf("%lf  %lf",m,n);
+    printf("近似根为:x*=%lf\n",i);
+    printf("二分次数为：%d",k);
+}
